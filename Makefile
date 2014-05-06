@@ -96,6 +96,12 @@ SUBST_FILES.catpages=	hier.c
 SUBST_SED.catpages=	-e 's|.*"man/cat[0-9]".*||g'
 SUBST_SED.catpages+=	-e 's|.*"tcp-environ\.5".*||g'	# also in ucspi-tcp
 
+SUBST_CLASSES+=		destdir
+SUBST_STAGE.destdir=	do-configure
+SUBST_FILES.destdir=	Makefile
+SUBST_SED.destdir=	-e 's|\(^load inst.*\.o\) auto_qmail\.o\(.*\)|\1 auto_destdir.o\2|g'
+SUBST_SED.destdir+=	-e 's|\(^	\./load inst.*\) auto_qmail\.o\(.*\)|\1 auto_destdir.o\2|g'
+
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	do-configure
 SUBST_FILES.paths=	README.pkgsrc
