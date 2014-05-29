@@ -5,6 +5,7 @@ PKG_OPTIONS_OPTIONAL_GROUPS=	rcpt
 PKG_OPTIONS_GROUP.rcpt=	qmail-badrcptto qmail-qregex qmail-realrcptto
 PKG_SUPPORTED_OPTIONS+=	sasl syncdir tls qmail-bigdns qmail-netqmail
 PKG_SUPPORTED_OPTIONS+=	qmail-outgoingip qmail-viruscan
+PKG_SUGGESTED_OPTIONS+=	qmail-netqmail
 
 .include "../../mk/bsd.options.mk"
 
