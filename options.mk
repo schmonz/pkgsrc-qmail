@@ -60,9 +60,13 @@ TLSSASL_PATCH=		netqmail-1.05-tls-smtpauth-20070417.patch
 PATCHFILES+=		${TLSSASL_PATCH}
 SITES.${TLSSASL_PATCH}=	https://raw.githubusercontent.com/shupp/legacy-qmail-related/master/patches/
 .  if !empty(PKG_OPTIONS:Mtls)
-CFLAGS+=		-DTLS=20070408	# NOTE: update according to the patch
-DJB_INSTALL_TARGETS=	cert tmprsadh
-USE_TOOLS+=		gmake
+CFLAGS+=		-DTLS=20070408	# NOTE: match what's _in_ the patch
+USE_TOOLS+=		openssl
+SUBST_CLASSES+=		tmprsadh
+SUBST_STAGE.tmprsadh=	do-configure
+SUBST_FILES.tmprsadh=	update_tmprsadh.sh
+SUBST_SED.tmprsadh=	-e 's|^export PATH=.*||'
+SUBST_SED.tmprsadh+=	-e 's|^openssl |${OPENSSL} |'
 PLIST.tls=		yes
 .  endif
 .endif

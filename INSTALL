@@ -2,6 +2,7 @@
 
 DOCDIR=@DOCDIR@
 EGDIR=@EGDIR@
+OPENSSL=@OPENSSL@
 PKGMANDIR=@PKGMANDIR@
 QMAILDIR=@QMAILDIR@
 QMAIL_QUEUE_DIR=@QMAIL_QUEUE_DIR@
@@ -65,6 +66,22 @@ QUEUE_EXTRA.
 EOF
 	fi
 
+	SERVERCERT=${PKG_SYSCONFDIR}/control/servercert.pem
+	if ! [ -z ${OPENSSL} ] && ! [ -s ${SERVERCERT} ]; then
+		${CAT} <<EOF
+===========================================================================
+
+NOTE: If you don't already have an SSL certificate for qmail:
+
+# ${OPENSSL} req -new -x509 -nodes -days 366 -out ${SERVERCERT} -keyout ${SERVERCERT}
+# chmod 640 ${SERVERCERT}
+# chown qmaild:qmail ${SERVERCERT}
+# ln -s ${SERVERCERT} ${PKG_SYSCONFDIR}/control/clientcert.pem
+# update_tmprsadh
+
+===========================================================================
+EOF
+	fi
 
 	;;
 
