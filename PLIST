@@ -129,6 +129,7 @@ share/examples/qmail/boot/home
 share/examples/qmail/boot/home+df
 share/examples/qmail/boot/proc
 share/examples/qmail/boot/proc+df
+${PLIST.viruscan}share/examples/qmail/control/signatures
 share/qmail/setup/config
 share/qmail/setup/config-fast
 share/qmail/setup/dnsfq

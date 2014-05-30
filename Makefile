@@ -50,7 +50,6 @@ FILES_SUBST+=		PKGMANDIR=${PKGMANDIR:Q} SHAREDIR=${SHAREDIR:Q}
 FILES_SUBST+=		QMAILDIR=${QMAILDIR:Q}
 FILES_SUBST+=		QMAIL_QUEUE_DIR=${QMAIL_QUEUE_DIR:Q}
 FILES_SUBST+=		QMAIL_QUEUE_EXTRA=${QMAIL_QUEUE_EXTRA:Q}
-FILES_SUBST+=		VIRUSCAN_SIGS_SRCFILE=${VIRUSCAN_SIGS_SRCFILE:Q}
 FILES_SUBST+=		PKGNAME=${PKGNAME:Q}
 
 SETUP_PROGRAMS=		dnsfq dnsip dnsptr hostname install ipmeprint
@@ -129,7 +128,7 @@ DARWINSUFX=		.doc
 DARWINSUFX=		# empty
 .endif
 
-post-extract:
+post-extract: post-extract-viruscan
 	${CP} ${FILESDIR}/README.pkgsrc ${WRKSRC}
 .if ${OPSYS} == "Darwin"
 .	for i in INSTALL SENDMAIL
@@ -152,7 +151,7 @@ pre-install:
 	  ${LN} -s ${DESTDIR}${EGDIR}/users	${DESTDIR}${QMAILDIR}/users
 .	endif
 
-post-install:
+post-install: post-install-viruscan
 	# qmail's installer sets strange permissions, set them back
 .	if (${PKG_INSTALLATION_TYPE} == "overwrite")
 .	  for i in bin boot

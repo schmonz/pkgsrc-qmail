@@ -78,6 +78,7 @@ SUBST_SED.load+=	-e '$$s|$$| -bind_at_load|'
 SUBST_MESSAGE.load=	Setting linker flags for syncdir.
 .endif
 
+PLIST_VARS+=		viruscan
 .if !empty(PKG_OPTIONS:Mqmail-viruscan)
 VIRUSCAN_PATCH=		qmail-smtpd-viruscan-1.3.patch
 VIRUSCAN_LOG_PATCH=	qmail-smtpd-viruscan-logging.patch
@@ -90,7 +91,20 @@ SUBST_CLASSES+=		viruscan
 SUBST_STAGE.viruscan=	do-configure
 SUBST_FILES.viruscan=	qmail-smtpd.c
 SUBST_SED.viruscan=	-e 's|qmail-smtpd: ||g'
-VIRUSCAN_SIGS_SRCFILE=	${DISTDIR}/${VIRUSCAN_PATCH}
+PLIST.viruscan=		yes
+post-extract-viruscan:
+	${SED} -e '1,15d' -e '34,$$d'		\
+		< ${DISTDIR}/${VIRUSCAN_PATCH}	\
+		> ${WRKSRC}/signatures
+	${CHMOD} 644 ${WRKSRC}/signatures
+post-install-viruscan:
+	${INSTALL_DATA} ${WRKSRC}/signatures ${DESTDIR}/${EGDIR}/control
+.  for i in control/signatures
+CONF_FILES+=		${EGDIR}/${i} ${PKG_SYSCONFDIR}/${i}
+.  endfor
 .else
-VIRUSCAN_SIGS_SRCFILE=	# undefined
+post-extract-viruscan:
+	${DO_NADA}
+post-install-viruscan:
+	${DO_NADA}
 .endif
