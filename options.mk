@@ -38,6 +38,7 @@ PLIST_VARS+=		qregex
 QREGEX_PATCH=		qregex-20060423.patch
 PATCHFILES+=		${QREGEX_PATCH}
 SITES.${QREGEX_PATCH}=	http://www.arda.homeunix.net/store/qmail/
+# actually http://www.arda.homeunix.net/?ddownload=409
 PATCH_DIST_STRIP.${QREGEX_PATCH}=	-p3
 PLIST.qregex=		yes
 .endif
