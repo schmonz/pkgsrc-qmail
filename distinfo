@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.24 2014/04/16 04:57:23 schmonz Exp $
+$NetBSD: distinfo,v 1.25 2014/05/30 21:35:04 schmonz Exp $
 
 SHA1 (qmail-1.03.tar.gz) = 18fb960481291a0503e93a94df3f6094edb7f27a
 RMD160 (qmail-1.03.tar.gz) = b851f273f1d365d38efd949b1efcf35768ffa30f

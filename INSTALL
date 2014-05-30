@@ -1,4 +1,4 @@
-# $NetBSD: INSTALL,v 1.5 2011/06/07 02:53:42 schmonz Exp $
+# $NetBSD: INSTALL,v 1.6 2014/05/30 21:35:04 schmonz Exp $
 
 DOCDIR=@DOCDIR@
 EGDIR=@EGDIR@

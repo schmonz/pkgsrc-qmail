@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.33 2014/04/16 04:57:23 schmonz Exp $
+# $NetBSD: options.mk,v 1.34 2014/05/30 21:35:04 schmonz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.qmail
 PKG_OPTIONS_OPTIONAL_GROUPS=	rcpt
