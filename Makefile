@@ -23,11 +23,8 @@ CONFLICTS+=		mutt<=1.4.2.1nb1
 CONFLICTS+=		netqmail-[0-9]*
 CONFLICTS+=		pulsar<=0.1.1
 
-NOT_FOR_UNPRIVILEGED=	yes
-
 WRKSRC=			${WRKDIR}/${DISTNAME}
 
-PKG_DESTDIR_SUPPORT=	destdir
 USE_TOOLS+=		nroff
 
 DJB_CONFIG_CMDS=	${ECHO} ${DESTDIR:Q}${QMAILDIR:Q} > conf-destdir
@@ -110,7 +107,6 @@ SUBST_SED.paths+=	-e 's,@GREP@,${GREP:Q},g'
 
 SUBST_FILES.djbware+=	cdb_seek.c dns.c
 
-USERGROUP_PHASE=	pre-install
 PKG_GROUPS=		qmail nofiles
 PKG_USERS+=		alias:nofiles
 PKG_USERS+=		qmaill:nofiles qmaild:nofiles qmailp:nofiles
