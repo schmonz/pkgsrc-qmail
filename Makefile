@@ -118,6 +118,9 @@ PKG_HOME.${user}=	${QMAILDIR}
 PKG_HOME.alias=		${QMAILDIR}/alias
 
 SPECIAL_PERMS+=		${PREFIX}/bin/qmail-queue qmailq qmail 04711
+.for f in qmail-inject qmail-pop3d qmail-qmqpc qmail-qmqpd qmail-qmtpd qmail-qread qmail-qstat qmail-showctl qmail-smtpd qmail-tcpok qmail-tcpto
+SPECIAL_PERMS+=		${PREFIX}/bin/${f} root qmail 0755
+.endfor
 .for f in qmail-clean qmail-getpw qmail-local qmail-popup qmail-pw2u qmail-remote qmail-rspawn qmail-send splogger
 SPECIAL_PERMS+=		${PREFIX}/bin/${f} root qmail 0711
 .endfor
