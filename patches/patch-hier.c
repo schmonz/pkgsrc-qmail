@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-hier.c,v 1.5 2017/03/20 16:23:20 schmonz Exp $
 
 Install files without needing real qmail users to exist yet.
 

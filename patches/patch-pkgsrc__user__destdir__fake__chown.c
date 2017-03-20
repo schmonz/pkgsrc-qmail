@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-pkgsrc__user__destdir__fake__chown.c,v 1.1 2017/03/20 16:23:20 schmonz Exp $
 
 Install files without needing real qmail users to exist yet.
 
