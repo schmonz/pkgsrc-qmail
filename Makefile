@@ -117,16 +117,11 @@ PKG_HOME.${user}=	${QMAILDIR}
 .endfor
 PKG_HOME.alias=		${QMAILDIR}/alias
 
-QMAIL_ROOT_ONLY_READABLES=	qmail-clean qmail-getpw qmail-local qmail-popup
-QMAIL_ROOT_ONLY_READABLES+=	qmail-pw2u qmail-remote qmail-rspawn qmail-send
-QMAIL_ROOT_ONLY_READABLES+=	splogger
-QMAIL_ROOT_ONLY_EVERYTHINGS=	qmail-lspawn qmail-newmrh qmail-newu qmail-start
-
-SPECIAL_PERMS+=		${PREFIX}/bin/qmail-queue qmailq qmail 4555
-.for f in ${QMAIL_ROOT_ONLY_READABLES}
+SPECIAL_PERMS+=		${PREFIX}/bin/qmail-queue qmailq qmail 04711
+.for f in qmail-clean qmail-getpw qmail-local qmail-popup qmail-pw2u qmail-remote qmail-rspawn qmail-send splogger
 SPECIAL_PERMS+=		${PREFIX}/bin/${f} root qmail 0711
 .endfor
-.for f in ${QMAIL_ROOT_ONLY_EVERYTHINGS}
+.for f in qmail-lspawn qmail-newmrh qmail-newu qmail-start
 SPECIAL_PERMS+=		${PREFIX}/bin/${f} root qmail 0700
 .endfor
 
@@ -156,22 +151,6 @@ pre-install:
 	${LN} -s ${DESTDIR}${EGDIR}/users	${DESTDIR}${QMAILDIR}/users
 
 post-install: post-install-viruscan
-	# allow packaging as non-root, fix at install time with SPECIAL_PERMS
-	${CHMOD} 0755 ${DESTDIR}${PREFIX}/bin/qmail-queue
-.	for f in ${QMAIL_ROOT_ONLY_READABLES} ${QMAIL_ROOT_ONLY_EVERYTHINGS}
-	  ${CHMOD} 0755 ${DESTDIR}${PREFIX}/bin/${f}
-.	endfor
-	# qmail's installer sets strange permissions, set them back
-.	for i in bin boot
-	  ${CHGRP} ${BINGRP} ${DESTDIR}${QMAILDIR}/${i}
-.	endfor
-.	for i in doc
-	  ${CHGRP} ${SHAREGRP} ${DESTDIR}${QMAILDIR}/${i}
-.	endfor
-.	for i in ${MANDIRS}
-	  ${CHGRP} ${MANGRP} ${DESTDIR}${QMAILDIR}/${i}
-.	endfor
-
 	${INSTALL_DATA} ${WRKSRC}/README.pkgsrc ${DESTDIR}${DOCDIR}
 
 	${INSTALL_PROGRAM_DIR} ${DESTDIR}${SHAREDIR}/setup
