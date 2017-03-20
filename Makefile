@@ -3,7 +3,7 @@
 
 DISTNAME=		${PKGNAME_NOREV}
 PKGNAME=		qmail-1.03
-PKGREVISION=		21
+PKGREVISION=		22
 CATEGORIES=		mail
 MASTER_SITES=		http://qmail.org/
 
@@ -14,6 +14,7 @@ LICENSE=		public-domain
 
 DEPENDS+=		checkpassword-[0-9]*:../../sysutils/checkpassword
 DEPENDS+=		daemontools-[0-9]*:../../sysutils/daemontools
+DEPENDS+=		queue-fix-[0-9]*:../../mail/queue-fix
 DEPENDS+=		ucspi-tcp-[0-9]*:../../net/ucspi-tcp
 
 CONFLICTS+=		courier-maildirmake-[0-9]*
