@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.127 2023/05/11 16:52:34 schmonz Exp $
+# $NetBSD: Makefile,v 1.129 2023/11/15 16:49:26 schmonz Exp $
 #
 
 DISTNAME=		notqmail-1.08
 PKGNAME=		qmail-1.03
-PKGREVISION=		52
+PKGREVISION=		53
 CATEGORIES=		mail
 MASTER_SITES=		${MASTER_SITE_GITHUB:=notqmail/}
 GITHUB_PROJECT=		notqmail
@@ -164,7 +164,7 @@ PATCH_DIST_CAT.${MAILDIRUNIQ_PATCH}=	\
 QMAILPATCHES+=			outgoingip:${OUTGOINGIP_PATCH}
 OUTGOINGIP_PATCH=		outgoingip.patch
 PATCHFILES+=			${OUTGOINGIP_PATCH}
-SITES.${OUTGOINGIP_PATCH}=	http://qmailorg.schmonz.com/
+SITES.${OUTGOINGIP_PATCH}=	https://qmail.notqmail.org/
 
 QMAILPATCHES+=			spp:${SPP_PATCH}:${SPP_PATCHFILE_cmd:sh}
 SPP_PATCH=			qmail-spp-0.42.tar.gz
